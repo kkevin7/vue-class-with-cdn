@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Lista de tareas </title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="bg-white">
+    <div id="app" class="container">
+        
+        <h1 class="text-center">{{Nombre}}</h1>
+        <div class="row">
+
+            <!-- El formulario -->
+            <div class="col-12 my-4">
+                <div class="border border-info">
+                    <h5 class="card-title text-center">Agregar Tipo</h5>
+                    <div class="mx-5">
+                        <form>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-primary text-white" id="basic-addon1">Nombre Tipo: </span>
+                                </div>
+                                <input type="number" ref="id" class="form-control" placeholder="id" aria-label="Tipo" aria-describedby="basic-addon1" hidden>
+                                <input type="text" ref="titulo" class="form-control" placeholder="Nombre del Tipo" aria-label="Tipo" aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-primary text-white" id="basic-addon1">Descripci�n: &nbsp;</span>
+                                    </div>
+                                    <input type="text" ref="descripcion" class="form-control" placeholder="Descripcion del tipo" aria-label="Tipo" aria-describedby="basic-addon1" required>
+                                </div>
+                            <div class="btn-group btn-block">
+                                <button class="btn btn-success" @click="Request_Method()">{{Editar ? 'Modificar' : 'Guardar'}}</button>
+                                <button type="reset" @click="Limpiar()" class="btn btn-danger">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- El formulario -->
+
+            <!-- La tabla para mostrar datos -->
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Descripci�n</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr v-for="Tipo of Tipos">
+                            <td>{{Tipo.id_tipo_tarea}}</td>
+                            <td>{{Tipo.nombre}}</td>
+                            <td>{{Tipo.descripcion}}</td>
+                            <td class="btn-group btn-block m-0 p-0">
+                                <button class="btn btn-warning" @click="Update_Tipos(Tipo.id_tipo_tarea)">Editar</button>
+                                <button class="btn btn-danger" @click="Delete_Tipos(Tipo.id_tipo_tarea)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- La tabla para mostrar datos -->
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
